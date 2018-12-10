@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.sprinfgramework.org/schema/security">
+<head>
+	<title>Songlist</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+</head>
+<body>
+	<div class="col-md-4">
+	<h1>Songlist</h1>
+	</div>
+	
+	<div class="col-md-4">
+	<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
+	</div>
+	
+	<div class="col-md-4" style="padding:20px 0">
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign out" class="btn btn-danger"/>
+	</form>
+	</div>
+	
+	<table class="table table-striped">
+	<tr>
+		<th>#</th>
+		<th>Artist</th>
+		<th>Song</th>
+		<th>Length</th>
+		<th>Listen</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	
+	<tr th:each = "song : ${songs}">
+		<td th:text="${song.id}"></td>
+    	<td th:text="${song.artist}"></td>
+    	<td th:text="${song.songname}"></td>
+    	<td th:text="${song.length}"></td>
+    	<td><a th:href="@{https://www.youtube.com/embed/{url}(url=${song.link})}" class="btn btn-success">Listen</a></td>
+    	<td><a th:href="@{/edit/{id}(id=${song.id})}" class="btn btn-warning">Edit</a></td>
+    	<td><a th:href="@{/delete/{id}(id=${song.id})}" class="btn btn-danger">Delete</a></td> 
+    </tr>
+	</table>
+	
+	<div class="col-md-4" style="margin-left: 10px">
+	<a href="/add" class="btn btn-success">Add Song</a> 
+	</div>
+	
+</body>
+</html>

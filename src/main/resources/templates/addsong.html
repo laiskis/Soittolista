@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+ 		<title>Add Song</title>
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>        
+	<h1 style="margin-left: 10px">Add song</h1>
+	<div class="col-md-4">
+		<form th:object="${song}" th:action="@{../save}" action="#" method="post">
+		
+			<input  type="hidden" th:field="*{id}" class="form-control" />
+			
+		  	<div><label for="artist">Artist: <input type="text" id="artist" th:field="*{artist}"  class="form-control"/></label></div>
+			
+		  	<div><label for="name">Song name: <input type="text" id="songname" th:field="*{songname}" class="form-control" /></label></div>
+			
+			<div><label for="length">Song length: <input type="text" id="length" th:field="*{length}" class="form-control" /></label></div>
+			
+			<div><label for="url">Song URL: <input type="text" id="link" th:field="*{link}" class="form-control" /></label></div>
+		  	(Example of full URL: https://www.youtube.com/watch?v=5MH683_qfZI)<h5>(Required URL = 5MH683_qfZI)</h5>
+			
+			<input type="submit" value="Save" class="btn btn-success"></input>
+		</form>
+	</div>
+</body>
+</html>
